@@ -23,7 +23,12 @@ export default function ExchangeBags() {
         // setExchangeBags(res.data['101'])
         exchangeDispatch({
           type: 'set',
-          payload: res.data['101'] || 0
+          payload: res.data['101']
+        })
+      } else {
+        exchangeDispatch({
+          type: 'set',
+          payload: 0
         })
       }
     }
