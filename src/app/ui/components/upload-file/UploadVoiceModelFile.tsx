@@ -4,7 +4,6 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 import { useAmDispatch } from "../alter-message/AlterMessageContextProvider";
 import Dropzone from 'react-dropzone'
-import { uploadFileToServer } from "@/app/lib/common.api";
 import { Progress, Spinner } from "@nextui-org/react";
 import { customAlphabet } from "nanoid";
 import { uploadModelFile } from "@/app/lib/voice.api";
@@ -87,7 +86,7 @@ function UploadVoiceModelFile({
       amDispatch({
         type: "add",
         payload: {
-          message: 'Please select a model first',
+          message: t("PublishVoiceModel.uploadVoiceModelFileError"),
           type: "error",
         },
       })

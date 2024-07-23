@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import { useTranslations } from "next-intl";
-import { toneListEn } from "@/app/lib/definitions.tone";
+import { useLocale, useTranslations } from "next-intl";
+import { toneListEn, toneListZhCN } from "@/app/lib/definitions.tone";
 import { UserIcon } from "@heroicons/react/24/outline";
 import MainStationControlParameters from "./MainStationControlParameters";
 import { Input, Select, SelectItem } from "@nextui-org/react";
@@ -25,6 +25,8 @@ function MainStationControl({
   onSendingChange?: ({sending, infType} : {sending: boolean, infType: InfType}) => void
 }) {
   const t = useTranslations();
+  const locale = useLocale();
+  const toneListMap = locale === "en" ? toneListEn : toneListZhCN;
   const toneList: Array<VoiceModelToneType> = [];
   const toneTypeList: Array<string> = [];
   const initInstantGenerateParamster:InstantGenerateParamsterType = {
@@ -66,7 +68,7 @@ function MainStationControl({
           size="lg"
           type="text"
           variant="bordered"
-          placeholder="Type context you want to convert here."
+          placeholder={t("VoiceInf.toneTextPlaceholder")}
           value={instantGenerateParamster.text}
           onChange={(e) => {
             setInstantGenerateParamster({
@@ -78,11 +80,11 @@ function MainStationControl({
         <div className="self-stretch justify-between items-start inline-flex">
           <Select
             isDisabled={!modelId}
-            items={toneListEn}
+            items={toneListMap}
             variant="bordered"
             size="lg"
             className="w-[180px]"
-            startContent={<div className="w-40 text-gray-500 text-sm font-semibold leading-normal"><p>Tones | </p></div>}
+            startContent={<div className="w-40 text-gray-500 text-sm font-semibold leading-normal"><p>{t("VoiceInf.tonesLabel")} | </p></div>}
             selectedKeys={[instantGenerateParamster?.tone.tone_type as string]}
             onChange={(e) => {
               const selectTone = toneList.filter((tone) => tone.tone_type === e.target.value)[0]
@@ -92,7 +94,7 @@ function MainStationControl({
               })
             }}
           >
-            {toneListEn.filter((tone) => toneTypeList.includes(tone.value)).map((tone) => (
+            {toneListMap.filter((tone) => toneTypeList.includes(tone.value)).map((tone) => (
               <SelectItem
                 key={tone.value}
                 value={tone.value}

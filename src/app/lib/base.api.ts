@@ -53,7 +53,7 @@ export const baseApiHander = ({
   const loginDispatch = useLoginDispatch();
   const exchangeDispatch = useExchangeDispatch();
   const [loading, setLoading] = useState(false);
-
+  const amDispatch = useAmDispatch();
   const axiosInstance = axios.create();
 
   axiosInstance.interceptors.response.use(function (response) {
@@ -163,7 +163,6 @@ export const baseApiHander = ({
     return Promise.reject(error);
   });
 
-  const amDispatch = useAmDispatch();
   const send = async (params?: any) => {
     const apiUrl = isSt ? stBaseUrl : baseUrl;
     const isLogin = getIsLogin();

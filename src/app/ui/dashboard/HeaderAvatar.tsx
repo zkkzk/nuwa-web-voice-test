@@ -38,7 +38,7 @@ export default function HeaderAvatar() {
       </div>
       <LoginModal
         isOpen={isOpen}
-        locale={locale === 'en' ? 'en' : 'en'}
+        locale={locale === 'en' ? 'en' : 'zh-CN'}
         onClose={() => {
           setIsOpen(false);
         }}

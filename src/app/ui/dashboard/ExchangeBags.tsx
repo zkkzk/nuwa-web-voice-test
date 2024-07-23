@@ -64,7 +64,7 @@ export default function ExchangeBags() {
             {exchange.value}
           </div>
         </div>
-        <Button size='sm' variant='ghost' color="primary" onPress={openExchangeModal} >兑换</Button>
+        <Button size='sm' variant='ghost' color="primary" onPress={openExchangeModal} >{t("ExchangeBags.exchangeButton")}</Button>
       </div>
     </>
   )

@@ -192,20 +192,6 @@ export type TypeVoiceApi = {
   count: number,
 };
 
-export const voiceModelTypeList = [{
-  value: "male",
-  label: "Male",
-}, {
-  value: "female",
-  label: "Female",
-}, {
-  value: "boy",
-  label: "Boy",
-}, {
-  value: "girl",
-  label: "Girl",
-}]
-
 export type voiceTrainRecordType = {
   id: string
   task_id: string

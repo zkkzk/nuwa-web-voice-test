@@ -5,8 +5,7 @@ import WholeNoteIcon from "@/app/icons/WholeNoteIcon";
 import { Button } from "@nextui-org/react";
 import { InfType, InstantGenerateParamsterType, VoiceInfHistoryType } from "@/app/lib/definitions.voice";
 import { voiceInf } from "@/app/lib/voice.api";
-import { useExchange, useExchangeDispatch } from "../exchange-modal/ExchangeContextProvider";
-import { getFinanceBags } from "@/app/lib/finance.api";
+import { useExchangeDispatch } from "../exchange-modal/ExchangeContextProvider";
 
 function MainStationInfButton({
   isDisabled,
@@ -21,7 +20,7 @@ function MainStationInfButton({
   onSuccess: (newInf: VoiceInfHistoryType) => void
   onSendingChange?: ({sending, infType} : {sending: boolean, infType: InfType}) => void
 }) {
-
+  const t = useTranslations();
   const exchangeDispatch = useExchangeDispatch();
 
   const [sending, setSending] = useState(false);
@@ -76,7 +75,7 @@ function MainStationInfButton({
           onPress={() => {
             voiceInfApiServer()
           }}
-        >Instant Generate</Button>
+        >{t("VoiceInf.instantGenerateButton")}</Button>
       )}
       {type === "code" && (
         <Button
@@ -87,7 +86,7 @@ function MainStationInfButton({
           onPress={() => {
             voiceInfApiServer()
           }}
-        >Generate API Address</Button>
+        >{t("VoiceInf.generateAPIAddressButton")}</Button>
       )}
     </>
   );

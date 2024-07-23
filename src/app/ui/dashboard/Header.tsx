@@ -13,6 +13,7 @@ import UserPanel from '../components/user-panel/UserPanel'
 import { useExchangeDispatch } from '../components/exchange-modal/ExchangeContextProvider'
 import { getFinanceBags } from '@/app/lib/finance.api'
 import ExchangeBags from './ExchangeBags'
+import LangSwitcher from './LangSwitcher'
 
 const navigation = [
   { name: 'Navigation.voiceasset', href: '/voiceasset', icon: VoiceAssetIcon, current: false },
@@ -68,7 +69,7 @@ export default function Header() {
                 {initRenderClient ? (
                   <DDLSidebar
                     lang="en"
-                    title={{ name: 'Voice' }}
+                    title={{ name: t('Header.title') }}
                     minifyTimeout={0}
                     forceSize={"mini"}
                   ></DDLSidebar>
@@ -113,6 +114,7 @@ export default function Header() {
           </div>
         </div>
         <div className="h-9 justify-end items-center gap-3 flex">
+          <LangSwitcher />
           <ExchangeBags />
           <div className="w-9 h-9 relative">
             <div className="w-9 h-9 left-0 top-0 absolute rounded-[40px] justify-center items-center inline-flex">

@@ -89,7 +89,7 @@ export const toneListEn:Array<TypeTone> = [{
   label: "Surprise",
 }]
 
-export const toneListZhcn:Array<TypeTone> = [{
+export const toneListZhCN:Array<TypeTone> = [{
   value: "neutral",
   label: "中立",
 }, {

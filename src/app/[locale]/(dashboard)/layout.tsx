@@ -6,7 +6,7 @@ import DashboardLayout from "@/app/ui/dashboard/DashboardLayout";
 import { LoginContextProvider } from "@ddreamland/common";
 import { ExchangeContextProvider } from "@/app/ui/components/exchange-modal/ExchangeContextProvider";
 
-const locales = ["en"];
+const locales = ["en", "zh-CN"];
 
 export async function generateMetadata({
   params: { locale },

@@ -1,8 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useRouter } from "@/navigation";
 import { useTranslations } from "next-intl";
-import { useAmDispatch } from "../components/alter-message/AlterMessageContextProvider";
 import VoiceModelListHeader from "./VoiceModelListHeader";
 import { InfType, VoiceModelType, VoiceInfHistoryType } from "@/app/lib/definitions.voice";
 import { VoiceModelFilterType } from "@/app/lib/definitions.voice";
@@ -21,10 +19,7 @@ function MainStation({
   onInfSuccess: (newInf: VoiceInfHistoryType) => void
   onSendingChange?: ({sending, infType} : {sending: boolean, infType: InfType}) => void
 }) {
-  const router = useRouter();
   const t = useTranslations();
-  const amDispatch = useAmDispatch();
-  const [isOpenParams, setIsOpenParams] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
   const [isEmpty, setIsEmpty] = useState(false);
