@@ -4,6 +4,7 @@ import { useTranslations } from 'next-intl'
 import WholeNoteIcon from '@/app/icons/WholeNoteIcon'
 import { useExchange, useExchangeDispatch } from '../components/exchange-modal/ExchangeContextProvider'
 import { getFinanceBags } from '@/app/lib/finance.api'
+import { Button } from '@nextui-org/react'
 
 export default function ExchangeBags() {
   const t = useTranslations()
@@ -22,12 +23,27 @@ export default function ExchangeBags() {
         // setExchangeBags(res.data['101'])
         exchangeDispatch({
           type: 'set',
-          payload: res.data['101']
+          payload: res.data['101'] || 0
         })
       }
     }
 
     setIsGetFianceBagsing(false)
+  }
+
+  const openExchangeModal = () => {
+    exchangeDispatch({
+      type: 'open',
+      payload: {
+        onClose: () => {
+          getBagsApiServer();
+          exchangeDispatch({type: "close"});
+        },
+        onSuccess: () => {
+          getBagsApiServer();
+        }
+      },
+    })
   }
 
   useEffect(() => {
@@ -36,24 +52,19 @@ export default function ExchangeBags() {
 
   return (
     <>
-      <div className="rounded-lg justify-center items-center gap-0.5 flex px-2 cursor-pointer" onClick={() => {
-        exchangeDispatch({
-          type: 'open',
-          payload: {
-            onClose: () => {
-              getBagsApiServer();
-              exchangeDispatch({type: "close"});
-            },
-            onSuccess: () => {
-              getBagsApiServer();
-            }
-          },
-        })
-      }}>
-        <WholeNoteIcon className="w-4 h-4 fill-green-500 stroke-green-500 relative" />
-        <div className="text-center text-green-500 text-xs font-bold">
-          {exchange.value}
+      <div
+        className="justify-center items-center gap-2 flex px-2 cursor-pointer"
+        onClick={() => {
+          openExchangeModal();
+        }}
+      >
+        <div className='ustify-center items-center gap-0.5 flex'>
+          <WholeNoteIcon className="w-4 h-4 fill-green-500 stroke-green-500 relative" />
+          <div className="text-center text-green-500 text-xs font-bold">
+            {exchange.value}
+          </div>
         </div>
+        <Button size='sm' variant='ghost' color="primary" onPress={openExchangeModal} >兑换</Button>
       </div>
     </>
   )
