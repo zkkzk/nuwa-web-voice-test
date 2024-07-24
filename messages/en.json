@@ -60,7 +60,7 @@
     "freedownloadTrue": "Free download",
     "freeDownloadFalse": "Do not allow downloads",
     "creditFreeTrue": "Credit Free",
-    "creditFreeFalse": "Credit Free",
+    "creditFreeFalse": "Credit Required",
     "reprintAllowed": "Reprint Allowed",
     "reprintDeclined": "Reprint Declined",
     "modificationAllowed": "Modification Allowed",
@@ -155,7 +155,7 @@
     "statusTraining": "Training: completing in 20 mins...",
     "statusFailed": "Failed",
     "statusCompleted": "Completed",
-    "statusRetryFailed": "Retry Failed. Dream Token Refunded"
+    "statusRetryFailed": "Retry Failed. Refunded!"
   },
   "PublishedVoices": {
     "title": "Voices",
@@ -186,7 +186,7 @@
     "star": "Star"
   },
   "Error": {
-    "localstoragefull": "The local storage space is full. Please delete it and perform operations again",
+    "localstoragefull": "The local storage space is full. Please delete it and try again",
     "draftscharacterlimit": "Limit 3",
     "uploadfailed": "Upload failed.",
     "invalidfile": "Invalid file.",

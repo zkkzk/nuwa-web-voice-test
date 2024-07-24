@@ -4,23 +4,23 @@
     "title": "Voice | DDream"
   },
   "Header": {
-    "title": "声音"
+    "title": "音色"
   },
   "Navigation": {
-    "voiceasset": "声音广场",
-    "workstation": "工作站",
+    "voiceasset": "音色广场",
+    "workstation": "工作台",
     "myvoicemodels": "我的声音模型",
-    "publishedvoices": "我发布的声音"
+    "publishedvoices": "我发布的音色"
   },
   "ExchangeBags": {
     "exchangeButton": "兑换"
   },
   "UserPanel": {
-    "profile": "概述",
+    "profile": "我的",
     "balance": "余额",
     "topUp": "充值",
-    "logout": "退出",
-    "dreamToken": "Dream Token"
+    "logout": "登出",
+    "dreamToken": "白日梦币"
   },
   "VoiceType": {
     "all": "全部",
@@ -32,21 +32,21 @@
   "VoiceAsset": {
     "searchPlaceholder": "搜索",
     "publish": "发布",
-    "publishFormLocal": "本地",
-    "publishFormMyVoiceLib": "声音库",
+    "publishFormLocal": "本地发布",
+    "publishFormMyVoiceLib": "声音库发布",
     "trainMyVoiceBtn": "训练我的声音"
   },
   "VoiceModelDetail": {
-    "tonesPreview": "音色预览",
-    "runOnWorkStation": "在工作站中运行",
+    "tonesPreview": "声音情感预览",
+    "runOnWorkStation": "在工作台中运行",
     "downloadCKPTFile": "下载CKPT文件",
     "downloadPTHFile": "下载PTH文件",
     "runnings": "运行次数",
     "downloads": "下载次数",
     "sharing": "分享次数",
-    "by": "By",
-    "time": "时间",
-    "sourceFrom": "从"
+    "by": "发布者",
+    "time": "发布时间",
+    "sourceFrom": "发布类型"
   },
   "VoiceModelSource": {
     "source": "来源",
@@ -57,16 +57,16 @@
   "VoiceModelPermission": {
     "permissions": "权限",
     "modelDownloadPermissions": "模型的下载权限",
-    "freedownloadTrue": "自由下载",
+    "freedownloadTrue": "允许下载",
     "freeDownloadFalse": "禁止下载",
-    "creditFreeTrue": "信用卡免费",
-    "creditFreeFalse": "信用卡免费",
+    "creditFreeTrue": "无需署名",
+    "creditFreeFalse": "需要署名",
     "reprintAllowed": "允许二创",
     "reprintDeclined": "禁止二创",
     "modificationAllowed": "允许修改",
     "modificationDeclined": "禁止修改",
-    "permissionChangeAllowed": "允许改变",
-    "permissionChangeDeclined": "禁止改变",
+    "permissionChangeAllowed": "允许更换权限",
+    "permissionChangeDeclined": "禁止更换权限",
     "commercialLicense": "商用版权",
     "commercialUseAllowed": "允许商用",
     "commercialUseDeclined": "禁止商用"
@@ -76,7 +76,7 @@
       "modelIdRequired": "请选择一个声音模型",
       "gptRequired": "gpt文件是必填项",
       "sovitsRequired": "sovits文件是必填项",
-      "toneRequired": "请至少上传一个语音文件",
+      "toneRequired": "请至少上传一个情感声音文件",
       "toneTypeRequired": "音色类型是必填项",
       "toneAudioUrlRequired": "语音文件是必填项",
       "toneTextRequired": "音色文本是必填项",
@@ -84,22 +84,22 @@
       "voiceInfoNameRequired": "请输入一个名称",
       "voiceInfoTypeRequired": "请选择一个类型",
       "toneTypeMustUnique": "音色类型不能重复",
-      "toneTypeMustHaveNeutral": "必须添加一个中立类型的音色"
+      "toneTypeMustHaveNeutral": "必须添加一个自然语调情感声音"
     },
     "selectModelTitle": "选择模型",
     "selectModelLabel": "选择",
     "modelPlaceholder": "选择模型",
     "basicParametersLabel": "基础参数",
-    "languageLabel": "语音",
+    "languageLabel": "语言",
     "languagePlaceholder": "选择语言",
-    "toneVoiceFileListLabel": "音调音频文件(感伤的声音)",
-    "toneVoiceFileListSubTitle": "您可以添加多达21种不同的音调，第一个将被设置为默认值。",
+    "toneVoiceFileListLabel": "音调音频文件(情感声音)",
+    "toneVoiceFileListSubTitle": "您可以添加多达21种不同的情感，第一个将被设置为默认值。",
     "uploadVoiceModelFileLabel": "在这里拖放文件或单击上传音频文件.",
-    "uploadVoiceModelFileError": "请先选一个语音文件",
+    "uploadVoiceModelFileError": "请先选一个声音模型",
     "selectToneListModalLabel": "选择一个训练的语音文件",
     "selectToneListModalTitle": "选择情绪",
     "toneVoiceFileLabel": "选择情绪",
-    "toneVoiceFileToneText": "这里要转换的类型上下文.",
+    "toneVoiceFileToneText": "请输入你想要转换的文本内容.",
     "uploadModelTitle": "上传模型",
     "typeLabel": "类型",
     "typePlaceholder": "选择类型",
@@ -122,12 +122,12 @@
     "filterRecent": "最近",
     "filterCollection": "收藏",
     "voiceHistoryTitle": "历史",
-    "voiceHistoryGenerating": "正在生成…",
-    "voiceHistoryEmpty": "队列是空的，可以尝试生成一些"
+    "voiceHistoryGenerating": "正在为你生成…",
+    "voiceHistoryEmpty": "空空如也，可以尝试生些有趣的东西"
   },
   "VoiceInf": {
     "parameters": "参数",
-    "basics": "基本",
+    "basics": "基础",
     "advanced": "高级",
     "languageLabel": "语言",
     "languagePlaceholder": "选择语言",
@@ -141,7 +141,7 @@
     "topKLabel": "Top K",
     "topPLabel": "Top P",
     "temperatureLabel": "温度",
-    "toneTextPlaceholder": "这里要转换的类型上下文.",
+    "toneTextPlaceholder": "请输入你想要转换的文本内容.",
     "tonesLabel": "音色",
     "instantGenerateButton": "立即生成",
     "generateAPIAddressButton": "生成API地址"
@@ -152,18 +152,18 @@
     "empty": "您还没有创建声音模型",
     "searchPlaceholder": "搜索",
     "statusInQueue": "排队中...",
-    "statusTraining": "训练中: 预计20分钟...",
+    "statusTraining": "训练中: 预计20分钟内完成...",
     "statusFailed": "失败",
     "statusCompleted": "完成",
-    "statusRetryFailed": "重试失败. Dream Token 不足"
+    "statusRetryFailed": "重试失败. 已退款！"
   },
   "PublishedVoices": {
     "title": "声音",
-    "empty": "这里好像什么都没有。试着做点什么"
+    "empty": "这里好像什么都没有。试着做点什么吧～"
   },
   "Pagination": {
-    "of": "of",
-    "items": "items"
+    "of": "从",
+    "items": "条目"
   },
   "Button": {
     "add": "添加",
@@ -186,10 +186,10 @@
     "star": "收藏"
   },
   "Error": {
-    "localstoragefull": "本地存储空间已满，请删除后在操作",
+    "localstoragefull": "本地存储空间已满，请删除后重试",
     "draftscharacterlimit": "限制3个",
     "uploadfailed": "上传失败",
     "invalidfile": "无效文件",
-    "sysfail": "系统错误"
+    "sysfail": "系统错误，请稍后重试"
   }
 }
