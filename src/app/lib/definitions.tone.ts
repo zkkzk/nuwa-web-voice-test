@@ -91,13 +91,13 @@ export const toneListEn:Array<TypeTone> = [{
 
 export const toneListZhCN:Array<TypeTone> = [{
   value: "neutral",
-  label: "中立",
+  label: "自然",
 }, {
   value: "admiration",
   label: "钦佩",
 }, {
   value: "amusement",
-  label: "娱乐",
+  label: "消遣",
 }, {
   value: "anger",
   label: "愤怒",
