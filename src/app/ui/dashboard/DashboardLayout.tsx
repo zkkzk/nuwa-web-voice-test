@@ -1,14 +1,13 @@
 'use client';
 
 import Header from "@/app/ui/dashboard/Header";
-import { useRouter } from "@/navigation";
 import { getUserInfo } from "@/app/lib/user.api";
-import { getBags } from "@/app/lib/user.api";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getIsLogin } from "@/app/lib/base.api";
 import { useTranslations } from "next-intl";
 import { UserType } from "@/app/lib/definitions.user";
 import { UserContextProvider } from "@/app/contexts/UserContextProvider";
+import { hearbeat } from "@/app/lib/common.api";
 
 
 export default function DashboardLayout({
@@ -44,10 +43,27 @@ export default function DashboardLayout({
     }
   }
 
+
+  const hearbeatInterval:any = useRef()
+  const hearbeatApi = hearbeat();
+
+  const heartbeatServer = () => {
+    try {
+      hearbeatApi.send();
+    } catch {
+    }
+  }
+
   useEffect(() => {
     if (!isInit && isLogin) {
       setIsInit(true)
     }
+
+    hearbeatInterval.current = setInterval(() => {
+      heartbeatServer();
+    }, 1000 * 30);
+    
+    return () => clearInterval(hearbeatInterval.current);
   }, [])
 
   useEffect(() => {

@@ -30,7 +30,6 @@ export default function RootLayout({
 }) {
   if (!locales.includes(locale as any)) notFound();
   const messages = useMessages();
-  
   return (
     <>
       <NextIntlClientProvider messages={messages}>
