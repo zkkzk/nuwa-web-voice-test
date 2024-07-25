@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { toneListEn, toneListZhCN } from "@/app/lib/definitions.tone";
 import { UserIcon } from "@heroicons/react/24/outline";
@@ -8,6 +8,8 @@ import { Input, Select, SelectItem } from "@nextui-org/react";
 import { DefaultVoiceModelAdvancedParams, DefaultVoiceModelBasicParams, InfType, InstantGenerateParamsterType, VoiceInfHistoryType, VoiceModelToneType } from "@/app/lib/definitions.voice";
 import MainStationInfButton from "./MainStationInfButton";
 import { handleConfetti } from "@/app/lib/utils";
+import { getInfCost } from "@/app/lib/voice.api";
+import { debounce, throttle } from "lodash-es";
 
 function MainStationControl({
   isOpenParams = false,
@@ -40,7 +42,9 @@ function MainStationControl({
       tone_type: "",
       audio_url: "",
       text: ""
-    }
+    },
+    price: 0,
+    code: '',
   }
 
   if (tones) {
@@ -53,11 +57,45 @@ function MainStationControl({
     })
   }
   const [instantGenerateParamster, setInstantGenerateParamster] = useState<InstantGenerateParamsterType>(initInstantGenerateParamster);
+  const instantGenerateParamsterRef = useRef(instantGenerateParamster);
+
+
+  useEffect(() => {
+    instantGenerateParamsterRef.current = instantGenerateParamster
+  })
 
   const onSuccessHandler = (newInf: VoiceInfHistoryType) => {
     handleConfetti()
     onSuccess && onSuccess(newInf);
   }
+
+  const textChangeCount = useRef(0);
+  // const [textChangeCount, setTextChangeCount] = useState(0)
+  const [textCostObj, setTextCostObj] = useState<any>({})
+  const getInfCostApi = getInfCost();
+
+  const getInfCostServer = async (text: string, textChangeCounta: number) => {
+    const res = await getInfCostApi.send({
+      text: text,
+    })
+
+    if (res && res.code === 0) {
+      if (textChangeCounta === textChangeCount.current) {
+        setInstantGenerateParamster({
+          ...instantGenerateParamsterRef.current,
+          price: res.data.price,
+          code: res.data.code
+        })
+        setTextCostObj({
+          ...textCostObj,
+          [textChangeCounta]: true
+        })
+      }
+    }
+  }
+
+  const getInfCostServerDebounce = debounce(getInfCostServer, 2000);
+  const getInfCostServerThrottle = throttle(getInfCostServer, 2000);
 
   return (
     <div className="flex-col justify-end items-center flex bottom-0 w-full">
@@ -70,11 +108,21 @@ function MainStationControl({
           variant="bordered"
           placeholder={t("VoiceInf.toneTextPlaceholder")}
           value={instantGenerateParamster.text}
-          onChange={(e) => {
+          onChange={async (e) => {
+            const nextText = e.target.value;
             setInstantGenerateParamster({
               ...instantGenerateParamster,
-              text: e.target.value
+              text: nextText
             })
+            const newTextChangeCount = textChangeCount.current + 1
+            textChangeCount.current = newTextChangeCount
+            setTextCostObj({
+              ...textCostObj,
+              [newTextChangeCount]: false
+            })
+            
+            // await getInfCostServerDebounce(nexText);
+            await getInfCostServerDebounce(nextText, newTextChangeCount)
           }}
         />
         <div className="self-stretch justify-between items-start inline-flex">
@@ -110,7 +158,7 @@ function MainStationControl({
           <div className="justify-start items-start gap-3 flex">
             <MainStationInfButton
               type="audio"
-              isDisabled={!modelId || instantGenerateParamster.text.length === 0}
+              isDisabled={!modelId || instantGenerateParamster.text.length === 0 || !textCostObj[textChangeCount.current]}
               value={instantGenerateParamster}
               onSuccess={(newInf) => {onSuccessHandler(newInf)}}
               onSendingChange={onSendingChange}

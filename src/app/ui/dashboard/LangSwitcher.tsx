@@ -2,6 +2,7 @@
 import { usePathname, useRouter } from "@/navigation";
 import { Tab, Tabs } from "@nextui-org/react";
 import { useLocale, useTranslations } from 'next-intl';
+import { setCookie } from "typescript-cookie";
 
 
 export default function Header() {
@@ -9,6 +10,7 @@ export default function Header() {
   const router = useRouter();
   const locale = useLocale();
   const pathname = usePathname();
+  
   return (
     <>
       <Tabs
@@ -16,6 +18,7 @@ export default function Header() {
         selectedKey={locale}
         onSelectionChange={(key) => {
           router.replace(pathname, {locale: key as any});
+          setCookie('i18next', key);
         }}
         classNames={{
           base: "",

@@ -24,6 +24,7 @@ export default function HeaderAvatar() {
         if (isLogin) {
           // gotoMePage()
         } else {
+          debugger
           setIsOpen(true);
         }
       }} className="w-full h-full bg-zinc-800 rounded-full">

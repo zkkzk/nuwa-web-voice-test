@@ -10,6 +10,8 @@ import { getFinanceBags } from "./finance.api";
 
 export const NUWAUID = "nuwa_uid"
 export const NUWASESSION = "nuwa_session"
+export const I18N_LOCALE = "i18next";
+export const NEXT_LOCALE = "NEXT_LOCALE";
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL;
 const stBaseUrl = process.env.NEXT_PUBLIC_ST_API_URL;
@@ -27,6 +29,20 @@ export const deleteLoginCookie = () => {
   removeCookie(NUWAUID)
   removeCookie(NUWASESSION)
 }
+
+export const getI18n = () => {
+  if (typeof document !== "undefined") {
+    const i18nLocale = getCookie(I18N_LOCALE);
+    const nextLocale = getCookie(NEXT_LOCALE);
+    if (i18nLocale) {
+      return i18nLocale;
+    }
+    if (nextLocale) {
+      return nextLocale
+    }
+  }
+  return 'zh-CN';
+};
 
 
 export const baseApiHander = ({
@@ -85,6 +101,7 @@ export const baseApiHander = ({
           type: "open",
           payload: {
             isCloseable: false,
+            locale: getI18n(),
             onLogin: () => {
               loginDispatch({type: "close"});
               window.location.reload();
@@ -176,6 +193,7 @@ export const baseApiHander = ({
           type: "open",
           payload: {
             isCloseable: false,
+            locale: getI18n(),
             onLogin: () => {
               loginDispatch({type: "close"});
               window.location.reload();

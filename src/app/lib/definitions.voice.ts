@@ -14,7 +14,9 @@ export type InstantGenerateParamsterType = {
   text: string,
   basic_params: VoiceModelBasicParamsType,
   advance_params: VoiceModelAdvancedParamsType,
-  tone: VoiceModelToneType
+  tone: VoiceModelToneType,
+  price: number
+  code: string
 }
 
 export type VoiceInfHistoryType = {
